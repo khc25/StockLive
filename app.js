@@ -8,7 +8,7 @@ const { Pool } = require('pg')
 
 const connectionString = 'postgres://xrwgvakl:12eZbGMSQmVSdEyDvhxq34R4mP-FpWB3@queenie.db.elephantsql.com:5432/xrwgvakl'
 const pool  = new Pool({
-  connectionString : connectionString,
+   connectionString : connectionString,
 })
 const WebSocket = require('ws')
 const socket = new WebSocket('wss://ws.finnhub.io?token=c20n99qad3if82u49o10');
@@ -30,7 +30,7 @@ socket.addEventListener('message', function (event) {
       var d = new Date();
       var date = d.getDate();
       console.log(data);
-      pool.query("INSERT INTO bitcoin (d,c,p,s,t,v) VALUES ($1, $2, $3, $4, $5, $6)RETURNING id",[date,data.c,data.p,data.s,data.t,data.v], (err,res) => {
+      pool.query("INSERT INTO bitcoin (d,c,p,s,t,v) VALUES ($1, $2, $3, $4, $5, $6)RETURNING id",[date,result.c,result.p,result.s,result.t,result.v], (err,res) => {
         if (err) {
           console.log(err);
         } else {
